@@ -1,0 +1,170 @@
+@php
+$category = \App\Category::take(7)->get();
+$array = [];
+foreach($category as $v){
+    $array[] = $v->name;
+}
+$category_text = implode(',',$array);
+@endphp
+
+
+@if(Request::url() == url('/'))
+@section('title'){{config('app.name','Laravel')}}@endsection
+@section('description'){{config('app.name')}}では、{{$category_text}}に関するみんなの投稿が見れます。@endsection
+@else
+@section('title')@yield('child-title') | {{config('app.name','Laravel')}}@endsection
+
+@section('description')@yield('child-description'){{config('app.name')}}では、{{$category_text}}に関するみんなの投稿が見れます。@endsection
+@endif
+
+
+@section('og-image')@yield('thumbnail',url('/eye.jpg'))@endsection
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+
+    <title>@yield('title')</title>
+
+
+    <meta property="og:title" content="@yield('title')">
+    <meta name="twitter:title" content="@yield('title')">
+    <meta property="og:description" content="@yield('description')">
+    <meta name="twitter:description" content="@yield('description')">
+    <meta name="description" content="@yield('description')">
+    <link rel="icon" href="{{url('favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{url('apple-touch-icon.png')}}" sizes="180x180">
+    <link rel="icon" href="{{url('favicon.png')}}" sizes="192x192">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="alternate" hreflang="ja" href="{{ url()->current() }}" />
+    <link rel="manifest" href="{{url('/manifest.json')}}">
+    @yield('meta')
+
+  <script src="{{ asset('js/app.js') }}"></script>
+
+  <!-- Styles -->
+  <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-menu">MENU</span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{route('category.archive')}}">カテゴリー</a></li>
+                        <li><a href="{{route('thread.archive')}}">スレッド一覧</a></li>
+                        <li><a href="{{route('thread.create')}}">スレッド新規作成</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="breadcrumb">
+            @yield('breadcrumb')
+        </div>
+        
+        <div class="container" id="body">
+
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    @yield('content')
+                    @yield('doublerec')
+             </div>
+             <div class="col-md-4 col-xs-12" id="sidebar">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        キーワードでスレッドを探す
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="{{ route('search.archive') }}">
+                            {{ csrf_field() }}
+                            <div id="date-form" class="form-group">
+                                <div class="col-md-12">
+                                    <input id="text" type="text" class="form-control" name="text" required placeholder="キーワードで検索">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-primary">
+                                        検索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <ul class="list-group">
+                  <li class="list-group-item active">カテゴリー</li>
+                  @foreach(\App\Category::all() as $category)
+                  <li class="list-group-item"><a href="{{$category->path()}}">{{$category->name}}</a>
+                  </li>
+                  @endforeach
+              </ul>
+
+              <ul class="list-group">
+                  <li class="list-group-item active">最近更新されたスレッド</li>
+                  @foreach(\App\Thread::orderBy('updated_at','desc')->take(20)->get() as $thread)
+                  <li class="list-group-item">
+                    <a href="{{$thread->path()}}">{{$thread->title}}</a>
+                    <small>{{$thread->count}}件のコメント</small>
+                  </li>
+                  @endforeach
+              </ul>
+    </div>
+</div>
+</div>
+<footer>
+    <ul>
+        <li>
+            <a href="{{route('company')}}">運営会社</a>
+        </li>
+        <li>
+            <a href="{{route('policy')}}">利用規約</a>
+        </li>
+        <li>
+            <a href="{{route('privacy')}}" target="_blank" rel="nofollow">プライバシーポリシー</a>
+        </li>
+         <li>
+            <a href="{{route('tokusho')}}" target="_blank" rel="nofollow">特定商取引法に基づく表記</a>
+        </li>
+    </ul>
+    <p class="copy">© 2018 - {{date('Y')}} {{config('app.name')}}</p>
+    <br>
+    <p class="copy"> <a href="{{route('login')}}" target="_blank" rel="nofollow">ログイン</a></p>
+</footer>
+</div>
+
+<!-- Scripts -->
+
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
