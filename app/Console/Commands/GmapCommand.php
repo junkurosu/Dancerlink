@@ -51,6 +51,7 @@ class GmapCommand extends Command
             $address = urlencode($address);
 
             $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "+CA&key=" . $myKey ;
+            sleep(2);
 
             $contents= file_get_contents($url);
             $jsonData = json_decode($contents,true);

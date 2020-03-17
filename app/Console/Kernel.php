@@ -29,9 +29,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('ping')->daily();
+        $schedule->command('ping')
+        ->cron('4 6 * * *');
 
-        $schedule->command('GmapRegister')->daily();
+        $schedule->command('GmapRegister')
+        ->cron('4 6 * * *');
 
     }
 
