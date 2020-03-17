@@ -13,7 +13,7 @@
 
 		<p>ご利用の際には、{{config('app.name')}}の「<a href="{{route('policy')}}">免責事項・注意事項</a>」をお読みの上利用してください。</p>
 
-		@yield('doublerecad')
+		
 		<h2>
 			<font color = "red">{{$message}}</font>
 		</h2>
