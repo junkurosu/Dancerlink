@@ -11,6 +11,8 @@
 
 access to `http://localhost:8000/admin`
 
-ID : admin@gmail.com
-PW : demoaccount
+ID : kurosujun124_0709@yahoo.co.jp
+PW : kurosujun124/
 
+# Dancerlink
+# Dancerlink

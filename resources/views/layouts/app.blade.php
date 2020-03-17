@@ -20,6 +20,10 @@ $category_text = implode(',',$array);
 
 @section('og-image')@yield('thumbnail',url('/eye.jpg'))@endsection
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,6 +55,7 @@ $category_text = implode(',',$array);
 
   <script src="{{ asset('js/app.js') }}"></script>
 
+
   <!-- Styles -->
   <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
 </head>
@@ -78,9 +83,11 @@ $category_text = implode(',',$array);
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{route('category.archive')}}">カテゴリー</a></li>
-                        <li><a href="{{route('thread.archive')}}">スレッド一覧</a></li>
-                        <li><a href="{{route('thread.create')}}">スレッド新規作成</a></li>
+                        
+                        <li><a href="{{route('studio.pref')}}">住所からスタジオ検索</a></li>
+                        <li><a href="{{route('studio.archive')}}">スタジオ一覧</a></li>
+                        <li><a href="{{route('studioRegister')}}">スタジオ登録</a></li>
+                        
                     </ul>
 
                 </div>
@@ -98,9 +105,10 @@ $category_text = implode(',',$array);
                     @yield('doublerec')
              </div>
              <div class="col-md-4 col-xs-12" id="sidebar">
+                
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        キーワードでスレッドを探す
+                        キーワードでスタジオを探す
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{ route('search.archive') }}">
@@ -121,30 +129,16 @@ $category_text = implode(',',$array);
                     </div>
                 </div>
 
-                <ul class="list-group">
-                  <li class="list-group-item active">カテゴリー</li>
-                  @foreach(\App\Category::all() as $category)
-                  <li class="list-group-item"><a href="{{$category->path()}}">{{$category->name}}</a>
-                  </li>
-                  @endforeach
-              </ul>
+                
 
-              <ul class="list-group">
-                  <li class="list-group-item active">最近更新されたスレッド</li>
-                  @foreach(\App\Thread::orderBy('updated_at','desc')->take(20)->get() as $thread)
-                  <li class="list-group-item">
-                    <a href="{{$thread->path()}}">{{$thread->title}}</a>
-                    <small>{{$thread->count}}件のコメント</small>
-                  </li>
-                  @endforeach
-              </ul>
+              
     </div>
 </div>
 </div>
 <footer>
     <ul>
         <li>
-            <a href="{{route('company')}}">運営会社</a>
+            <a href="/contact">お問い合わせ</a>
         </li>
         <li>
             <a href="{{route('policy')}}">利用規約</a>
@@ -152,13 +146,10 @@ $category_text = implode(',',$array);
         <li>
             <a href="{{route('privacy')}}" target="_blank" rel="nofollow">プライバシーポリシー</a>
         </li>
-         <li>
-            <a href="{{route('tokusho')}}" target="_blank" rel="nofollow">特定商取引法に基づく表記</a>
-        </li>
+         
     </ul>
-    <p class="copy">© 2018 - {{date('Y')}} {{config('app.name')}}</p>
+    <p class="copy">© 2020 - {{date('Y')}} {{config('app.name')}}</p>
     <br>
-    <p class="copy"> <a href="{{route('login')}}" target="_blank" rel="nofollow">ログイン</a></p>
 </footer>
 </div>
 
@@ -166,5 +157,10 @@ $category_text = implode(',',$array);
 
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+ @stack('js')
 </body>
 </html>
+
+@push('js')
+<script type="text/javascript" src="{{asset('js/preftest.js')}}"></script>
+@endpush

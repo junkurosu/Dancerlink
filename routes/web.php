@@ -14,6 +14,8 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/auth/login', 'HomeController@getAuth');
+Route::post('/auth/login', 'HomeController@postAuth')->name('login');
 Route::get('/category', 'HomeController@categoryArchive')->name('category.archive');
 Route::get('/category/{id}', 'HomeController@categoryPost')->name('category.post');
 
@@ -30,7 +32,9 @@ Route::post('/comment/spam', 'HomeController@commentSpam')->name('comment.spam')
 
 Route::get('/link', 'HomeController@linkPage')->name('link');
 Route::get('/jump', 'HomeController@jump')->name('jump');
-Route::view('/company','company')->name('company');
+Route::get('/contact','HomeController@contactGet');
+Route::post('/contact','HomeController@contactPost')->name('contact');
+Route::post('/confirm','HomeController@confirm')->name('confirm');
 Route::view('/policy','policy')->name('policy');
 Route::view('/privacy','privacy')->name('privacy');
 Route::view('/tokusho','tokusho')->name('tokusho');
@@ -46,5 +50,40 @@ Route::post('/admin/category','AdminController@categoryPost');
 Route::get('/admin/category/{id}','AdminController@categoryEdit')->name('admin.category.edit');
 Route::post('/admin/category/{id}','AdminController@categoryUpdate');
 Route::post('/admin/category','AdminController@categoryPost');
-
+Route::get('/admin/contact','AdminController@contactGet');
+Route::post('/admin/contact','AdminController@contactDelete')->name('admin.contact');
 Route::get('/admin/spam','AdminController@spam')->name('admin.spam');
+Route::get('/admin/preftest','AdminController@preftest')->name('admin.preftest');
+Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
+	Route::resource('prefs','PrefController');
+});
+
+Route::post('/admin/prefs/csvregist','CsvController@csvPrefRegister')->name('admin.prefs.csvregist');
+
+/*
+map
+ */
+
+Route::post('/map','GmapsController@view');
+Route::get('/pref','GmapsController@pref')->name('studio.pref');
+Route::post('/mapsearch','GmapsController@search')->name('mapsearch');
+Route::get('/studio','GmapsController@studios')->name('studio.archive');
+Route::get('/studioRegister','GmapsController@registerGet')->name('studioRegister');
+Route::post('/studioRegister','GmapsController@create')->name('studioCreate');
+
+/*
+admin map
+ */
+
+Route::get('/register','AdminController@registerGet')->name('admin.register');
+Route::post('/register','AdminController@create')->name('register');
+Route::get('/studioEdit','AdminController@studiosEdit')->name('admin.studios');
+Route::post('/studioEdit','AdminController@studiosDelete')->name('studiosDelete');
+Route::get('/permission','AdminController@permissionGet')->name('admin.permission');
+Route::post('/permission','AdminController@permissionPost')->name('permission');
+Route::post('/Notpermission','AdminController@Notpermission')->name('Notpermission');
+
+/*
+test
+ */
+Route::get('/test','HomeController@Test');

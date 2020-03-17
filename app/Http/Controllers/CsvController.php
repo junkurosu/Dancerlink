@@ -136,5 +136,36 @@ class CsvController extends Controller
     }
 
 
+     public function csvPrefRegister(Request $request){
+        $data = $request->data_file;
+        $config = new LexerConfig();
+        $config->setDelimiter(",");
+        $interpreter = new Interpreter();
+        $interpreter->addObserver(function(array $columns){
+            /*
+            $columns[0] = code
+            $columns[1] = pref_name
+            */
+            if($columns[0] && $columns[0] != "コード"){
+                try {
+                    \App\Prefecture::create([
+                    'code' => $columns[0],
+                    'pref_name' => $columns[1],
+                    'city_name' => $columns[2],
+                    'city_sub_name' => $columns[3],
+                    'lat' => $columns[4],
+                    'lng' => $columns[5],
+                    ]);
+                } catch (Exception $e) {
+                    
+                }
+            }
+        });
+        $lexer = new Lexer($config);
+        $lexer->parse($data, $interpreter);
+        return back();
+    }
+
+
 
 }

@@ -8,6 +8,9 @@ use App\Category;
 use App\Thread;
 use App\Meta;
 use App\Comment;
+use App\Studio;
+use App\Contact;
+use App\Memo;
 
 use Session;
 
@@ -31,6 +34,10 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.home');
+    }
+     public function preftest()
+    {
+        return view('admin.preftest');
     }
 
     public function category(){
@@ -98,6 +105,72 @@ public function __trim($str){
     $str = preg_replace('/[\r\t]/', '', $str);
     $str = preg_replace('/\s(?=\s)/', '', $str);
     return $str;
+}
+
+public function registerGet(Request $request)
+    {
+        return view('gmaps.register');
+    }
+
+    
+        protected function create(Request $request)
+    {
+        // return false;
+        
+        Studio::create([
+            'name' =>$request->name,
+            'address' => $request->address,
+            'lat'=>$request->lat,
+            'lng'=>$request->lng,
+            'url' => $request->url,
+        ]);
+            return view('gmaps.register');
+    }
+
+public function studiosEdit(){
+        return view('gmaps.itemEdit',[
+            'items' => Studio::orderBy('updated_at','desc')->paginate(50)
+        ]);
+    }
+
+    public function studiosDelete(Request $request){
+        $id=$request->id;
+
+        Studio::where('id', $id)->delete();
+        return redirect('/studioEdit');
+    }
+
+public function contactGet(){
+        return view('admin.contact',[
+            'contacts' => Contact::orderBy('updated_at','desc')->paginate(10)
+        ]);
+    }
+
+    public function contactDelete(Request $request){
+        $id=$request->id;
+
+        Contact::where('id', $id)->delete();
+        return redirect('/admin/contact');
+    }
+
+public function permissionGet(){
+        return view('gmaps.permission',[
+            'items' => Memo::orderBy('updated_at','asc')->paginate(10)
+        ]);
+    }
+
+public function permissionPost(Request $request){
+     $id=$request->id;
+
+        Memo::where('id', $id)->delete();
+        return redirect('/permission');
+   }
+
+public function Notpermission(Request $request){
+     $id=$request->id;
+
+        Memo::where('id', $id)->delete();
+        return redirect('/permission');
 }
 
 }

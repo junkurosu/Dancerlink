@@ -4,7 +4,7 @@
 @section('child-title')特定商取引法に基づく表記@endsection
 @section('child-description')特定商取引法に基づく表記@endsection
 @section('breadcrumb')
-{{ Breadcrumbs::render('company') }}
+{{ Breadcrumbs::render('tokusho') }}
 @stop
 
 @section('meta')

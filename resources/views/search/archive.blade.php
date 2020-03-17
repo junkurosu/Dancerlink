@@ -12,17 +12,15 @@
 <div class="panel panel-default">
 	<div class="panel-heading"><h1>@yield('child-title')</h1></div>
 	<div class="panel-body">
-		@foreach($threads as $thread)
+		@foreach($studios as $studio)
 		<div class="thread-list">
 			<p>
-				<a class="thread_title" href="{{$thread->path()}}">{{$thread->title}}</a>
+				<a class="thread_title" href="{{$studio->url}}">{{$studio->name}}</a>
 			</p>
-			<div>
-				<small class="gray">{{$thread->description}}</small></div>
-				<small>{{$thread->count}}件のコメント 最終更新時間：{{$thread->updated_at->format('Y/m/d h:i:s')}}</small>
+			
 			</div>
 			@endforeach
-			{{$threads->links()}}
+			
 		</div>
 	</div>
 	@endsection

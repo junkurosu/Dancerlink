@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use \App\Category;
 use \App\Thread;
 use \App\Meta;
 use \App\Comment;
 use \App\Spam;
+use App\User;
+use App\Studio;
+use App\Contact;
 use Session;
 
 
@@ -31,11 +35,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',[
-            'threads' => Thread::orderBy('updated_at','desc')->take(5)->get(),
-            'categories' => Category::all(),
-        ]);
+        $message="";
+
+        return view('home',compact('message'));
+            
+    
     }
+    public function getAuth()
+    {
+      Auth::logout();
+      return view('auth.login');
+    }
+
+    public function postAuth(Request $request)
+    {
+      $email=$request->email;
+      $password = $request->password;
+
+      if(Auth::attempt(['email'=>$email,'password'=>$password]))
+      {
+        // $msg = 'ログインしました。('.Auth::user()->name . ')';
+        return redirect('/admin');
+      }
+        return view('auth.login');
+
+    }
+
     public function categoryArchive(){
         return view('category.archive',[
             'categories' => Category::all()
@@ -55,15 +80,15 @@ class HomeController extends Controller
         $text = preg_replace('/( |　|,|、)/', ',', $search_text);
         $keywords = explode(',',$text);
 
-        $threads = Thread::where('id','>','0');
+        $studios = Studio::where('id','>','0');
         foreach ($keywords as $key => $value) {
-            $threads = $threads->where('title','like',"%{$value}%");
+            $studios = $studios->where('name','like',"%{$value}%");
         }
-        $threads = $threads->paginate(100);
+        $studios = $studios->paginate(100);
 
         return view('search.archive',[
             'search' => $search_text,
-            'threads' => $threads
+            'studios' => $studios
         ]);
     }
     public function threadArchive(){
@@ -176,6 +201,39 @@ public function jump(Request $request){
     }
     return redirect('/thread/'.$thread->id.'?page='.$page_count.'#c_'.$thread_count);
 }
+
+public function contactGet(){
+    return view('contact');
+}
+
+public function contactPost(Request $request){
+      $name=$request->name;
+      $email=$request->email;
+      $contact=$request->contact;
+
+    
+    return view('confirm',[
+        'name'=>$name,
+        'email'=>$email,
+        'contact'=>$contact
+    ]);
+}
+
+public function confirm(Request $request){
+      $name=$request->name;
+      $email=$request->email;
+      $contact=$request->contact;
+
+      Contact::create([
+        'name'=>$name,
+        'email'=>$email,
+        'contact'=>$contact
+    ]);
+      return redirect('/');
+   
+}
+
+
 function url2link($body)
 {
     $pattern = '/(?<!href=")https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
@@ -201,4 +259,12 @@ function res2link($body,$thread)
     }, $body);
     return $body;
 }
+
+
+public function Test(){
+    return view('test');
+}
+
+
+
 }
