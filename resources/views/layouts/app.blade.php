@@ -14,7 +14,7 @@ $category_text = implode(',',$array);
 @else
 @section('title')@yield('child-title') | {{config('app.name','Laravel')}}@endsection
 
-@section('description')@yield('child-description'){{config('app.name')}}では、{{$category_text}}に関するみんなの投稿が見れます。@endsection
+@section('description')@yield('child-description'){{config('app.name')}}では手軽にダンススタジオを検索することが出来ます。当サイトではGoogleMapを用いて付近のスタジオを検索できる点が他サイトと大きく異なります。@endsection
 @endif
 
 
