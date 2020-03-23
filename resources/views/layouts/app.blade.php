@@ -10,11 +10,11 @@ $category_text = implode(',',$array);
 
 @if(Request::url() == url('/'))
 @section('title'){{config('app.name','Laravel')}}@endsection
-@section('description'){{config('app.name')}}では、{{$category_text}}に関するみんなの投稿が見れます。@endsection
+@section('description'){{config('app.name')}}ではでは手軽にレンタルダンススタジオを検索することが出来ます。ダンサーにとってスタジオは練習するのに欠かせない存在です。当サイトではGoogleMapを用いて付近のスタジオを検索できる点が他サイトと大きく異なります。今までのサイトでは市区町村別にスタジオを探すことは出来ましたが見づらいものが多く探すのに時間がかかることがありました。そんな実体験からこのサイトは生まれました。ダンサーがスタジオ検索に時間をかけずにストレスなく使うことができるサイトになっています。@endsection
 @else
 @section('title')@yield('child-title') | {{config('app.name','Laravel')}}@endsection
 
-@section('description')@yield('child-description'){{config('app.name')}}では手軽にダンススタジオを検索することが出来ます。当サイトではGoogleMapを用いて付近のスタジオを検索できる点が他サイトと大きく異なります。@endsection
+@section('description')@yield('child-description'){{config('app.name')}}ではでは手軽にレンタルダンススタジオを検索することが出来ます。ダンサーにとってスタジオは練習するのに欠かせない存在です。当サイトではGoogleMapを用いて付近のスタジオを検索できる点が他サイトと大きく異なります。今までのサイトでは市区町村別にスタジオを探すことは出来ましたが見づらいものが多く探すのに時間がかかることがありました。そんな実体験からこのサイトは生まれました。ダンサーがスタジオ検索に時間をかけずにストレスなく使うことができるサイトになっています。@endsection
 @endif
 
 
