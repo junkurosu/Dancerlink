@@ -127,6 +127,9 @@ $category_text = implode(',',$array);
                             </div>
                         </form>
                     </div>
+                   <!-- admax -->
+<script src="https://adm.shinobi.jp/s/f71bd084159b3ca8322ed6df914d848f"></script>
+<!-- admax -->
                 </div>
 
                 
