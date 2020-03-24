@@ -75,9 +75,11 @@ $category_text = implode(',',$array);
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    
+                    <a  href="{{ url('/') }}">
+                        <img  src="{{ asset('/img/Dancerlink2.png') }}" alt="トップページ" height="50%" width="50%">
                     </a>
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
