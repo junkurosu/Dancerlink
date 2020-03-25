@@ -86,7 +86,7 @@
                             <label for="text" class="col-md-4 control-label">詳細</label>
 
                             <div class="col-md-6">
-                                <textarea id="text" type="text" class="form-control" name="text"  rows="10" required></textarea>
+                                <input id="text" type="text" class="form-control" name="text"  required>
 
                                 @if ($errors->has('text'))
                     <span class="help-block">
@@ -100,7 +100,7 @@
                             <label for="cost" class="col-md-4 control-label">料金</label>
 
                             <div class="col-md-6">
-                               <textarea id="cost" type="text" class="form-control" name="cost"  rows="5"required></textarea>
+                               <input id="cost" type="text" class="form-control" name="cost"  required>
                                 @if ($errors->has('cost'))
                     <span class="help-block">
                         <strong>{{ $errors->first('cost') }}</strong>
@@ -126,7 +126,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    登録
                                 </button>
                             </div>
                         </div>

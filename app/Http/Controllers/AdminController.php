@@ -117,6 +117,7 @@ public function registerGet(Request $request)
     {
         // return false;
         
+
         Studio::create([
             'name' =>$request->name,
             'address' => $request->address,
@@ -189,6 +190,8 @@ public function permissionGet(){
 
 public function permissionPost(Request $request){
      $id=$request->id;
+
+    
 
         Memo::where('id', $id)->delete();
         Studio::create([

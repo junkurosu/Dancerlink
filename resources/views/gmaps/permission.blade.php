@@ -93,7 +93,7 @@
                             <label for="text" class="col-md-4 control-label">詳細</label>
 
                             <div class="col-md-6">
-                                <textarea id="text" type="text" class="form-control" name="text"  rows="10" required></textarea>
+                               <input id="text" type="text" class="form-control" name="text" value="{{$item->text}}" required>
 
                             @if ($errors->has('text'))
                             <span class="help-block">
@@ -107,7 +107,7 @@
                             <label for="cost" class="col-md-4 control-label">料金</label>
 
                             <div class="col-md-6">
-                                <textarea id="cost" type="text" class="form-control" name="cost"  rows="5" value="{{$item->cost}}"required></textarea>
+                                <input id="cost" type="text" class="form-control" name="cost" value="{{$item->cost}}" required>
 
                             @if ($errors->has('cost'))
                             <span class="help-block">
