@@ -26,6 +26,12 @@ Breadcrumbs::register('studio.archive', function ($breadcrumbs) {
 	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
 });
 
+Breadcrumbs::register('studioDetails', function ($breadcrumbs) {
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
+	$breadcrumbs->push('スタジオ詳細',route('studioDetails'));
+});
+
 Breadcrumbs::register('studio.pref', function ($breadcrumbs) {
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('住所検索',route('studio.pref'));
@@ -91,6 +97,14 @@ Breadcrumbs::register('admin.studios', function ($breadcrumbs) {
 	$breadcrumbs->parent('Admin');
 	$breadcrumbs->push('スタジオ編集',route('admin.studios'));
 });
+
+Breadcrumbs::register('studioEdit', function ($breadcrumbs) {
+	$breadcrumbs->parent('Admin');
+	$breadcrumbs->push('スタジオ編集',route('admin.studios'));
+	$breadcrumbs->push('スタジオ編集画面',route('studioEdit'));
+
+});
+
 Breadcrumbs::register('admin.register', function ($breadcrumbs) {
 	$breadcrumbs->parent('Admin');
 	$breadcrumbs->push('スタジオ登録',route('admin.register'));

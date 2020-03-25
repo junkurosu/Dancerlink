@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
-@section('child-title')スタジオ許可一覧@endsection
-@section('child-description')スタジオ許可一覧ページです。@endsection
+@section('child-title')スタジオ編集@endsection
+@section('child-description')スタジオ編集ページです。@endsection
 
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('admin.permission') }}
+{{ Breadcrumbs::render('studioEdit') }}
 @stop
 
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading"><h1>@yield('child-title')</h1></div>
 	
-		@foreach($items as $item)
-		<div class="panel-body">
-		
-			<form class="form-horizontal" method="POST" action="{{ route('permission') }}">
+		<div class="panel-body">	
+			<form class="form-horizontal" method="POST" action="{{ route('studioEdited') }}">
 					{{ csrf_field() }}
 					<input name="id" type="hidden" value="{{$item->id}}">
 
@@ -81,7 +79,8 @@
 
                             <div class="col-md-6">
                                 <input id="url" type="url" class="form-control" name="url" value="{{$item->url}}" required>
-                                @if ($errors->has('url'))
+
+                            @if ($errors->has('url'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('url') }}</strong>
                             </span>
@@ -93,7 +92,7 @@
                             <label for="text" class="col-md-4 control-label">詳細</label>
 
                             <div class="col-md-6">
-                                <textarea id="text" type="text" class="form-control" name="text"  rows="10" required></textarea>
+                            <input id="text" type="text" class="form-control" name="text" value="{{$item->text}}" required>
 
                             @if ($errors->has('text'))
                             <span class="help-block">
@@ -107,7 +106,7 @@
                             <label for="cost" class="col-md-4 control-label">料金</label>
 
                             <div class="col-md-6">
-                                <textarea id="cost" type="text" class="form-control" name="cost"  rows="5" value="{{$item->cost}}"required></textarea>
+                               <input id="cost" type="cost" class="form-control" name="cost" value="{{$item->cost}}" required>
 
                             @if ($errors->has('cost'))
                             <span class="help-block">
@@ -121,7 +120,7 @@
                             <label for="time" class="col-md-4 control-label">使用可能時間</label>
 
                             <div class="col-md-6">
-                                <input id="time" type="text" class="form-control" name="time"  required>
+                                <input id="time" type="text" class="form-control" name="time" value="{{$item->time}}" required>
 
                             @if ($errors->has('time'))
                             <span class="help-block">
@@ -131,22 +130,26 @@
                             </div>
                         </div>
 
+
+
+
+
                         <div class="form-group">
                         	 <label for="url" class="col-md-4 control-label">
                         	 	<button type="submit" class="btn btn-primary">
-                                    許可
+                                    更新
                                 </button>
                         	 </label>
                        </form>
 
                             <div class="col-md-6">
-                            	<form method="POST" action="{{ route('Notpermission') }}">
+                            	<form method="POST" action="{{ route('studioDelete') }}">
 					{{ csrf_field() }}
 				
 					<input name="id" type="hidden" value="{{$item->id}}">
                             
                                 <button type="submit" class="btn btn-primary">
-                                    除去
+                                    削除
                                 </button>
                 </form>
                                 
@@ -154,8 +157,8 @@
                         </div>
 			
 	</div>
-		@endforeach
-		{{$items->links()}}
+		
+	
 	
 </div>
 @endsection

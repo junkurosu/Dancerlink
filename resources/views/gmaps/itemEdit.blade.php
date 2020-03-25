@@ -15,17 +15,25 @@
 		@foreach($items as $item)
 		<div class="thread-list">
 			<p>
-				<a class="thread_title" href="{{$item->url}}" target="_blank">{{$item->name}}</a>
+				{{$item->name}}
 			</p>
-				<div>
-				<small class="gray">{{$item->lat}} , {{$item->lng}}</small></div>
+				<div><small class="gray">緯度:{{$item->lat}} , 経度:{{$item->lng}}</small></div>
+				<div><small class="gray">住所:{{$item->address}}</small></div>
+				<div><small class="gray">URL:<a class="thread_title" href="{{$item->url}}" target="_blank">"{{$item->url}}"</a></small></div>
+				<div><small>詳細:{{$item->text}}</small></div>
+				<div><small>料金:{{$item->cost}}</small></div>
+				<div><small>使用可能時間:{{$item->time}}</small></div>
 			<small>
-				<form method="POST" action="{{ route('studiosDelete') }}">
+				<form method="POST" action="{{ route('studioEdit') }}">
 					{{ csrf_field() }}
-					<input type="submit" name="id" value="{{$item->id}}">
+					<button type="submit" class="btn btn-primary">
+                                    編集する
+                                </button>
+					<input type="hidden" name="id" value="{{$item->id}}">
 				</form>
 
 			</small>
+			
 		</div>
 		@endforeach
 		{{$items->links()}}

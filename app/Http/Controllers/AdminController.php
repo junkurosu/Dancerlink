@@ -123,6 +123,9 @@ public function registerGet(Request $request)
             'lat'=>$request->lat,
             'lng'=>$request->lng,
             'url' => $request->url,
+            'text' => $request->text,
+            'cost' => $request->cost,
+            'time' => $request->time,
         ]);
             return view('gmaps.register');
     }
@@ -133,7 +136,32 @@ public function studiosEdit(){
         ]);
     }
 
-    public function studiosDelete(Request $request){
+public function studioEditing(Request $request){
+    $id=$request->id;
+
+        return view('gmaps.itemEditing',[
+            'item' => Studio::where('id',$id)->first()
+        ]);
+    }
+
+public function studioEdited(Request $request){
+    $id=$request->id;
+
+    Studio::where('id', $id)
+          ->update([
+            'name' =>$request->name,
+            'address' => $request->address,
+            'lat'=>$request->lat,
+            'lng'=>$request->lng,
+            'url' => $request->url,
+            'text' => $request->text,
+            'cost' => $request->cost,
+            'time' => $request->time,
+        ]);
+        return redirect('/studioEdit');
+    }
+
+    public function studioDelete(Request $request){
         $id=$request->id;
 
         Studio::where('id', $id)->delete();
@@ -163,6 +191,17 @@ public function permissionPost(Request $request){
      $id=$request->id;
 
         Memo::where('id', $id)->delete();
+        Studio::create([
+            'name' =>$request->name,
+            'address' => $request->address,
+            'lat'=>$request->lat,
+            'lng'=>$request->lng,
+            'url' => $request->url,
+            'text' => $request->text,
+            'cost' => $request->cost,
+            'time' => $request->time,
+        ]);
+
         return redirect('/permission');
    }
 

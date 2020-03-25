@@ -74,8 +74,54 @@
 
                             <div class="col-md-6">
                                 <input id="url" type="url" class="form-control" name="url" required>
+                                @if ($errors->has('url'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('url') }}</strong>
+                    </span>
+                    @endif
                             </div>
                         </div>
+
+                         <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }}">
+                            <label for="text" class="col-md-4 control-label">詳細</label>
+
+                            <div class="col-md-6">
+                                <textarea id="text" type="text" class="form-control" name="text"  rows="10" required></textarea>
+
+                                @if ($errors->has('text'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('text') }}</strong>
+                    </span>
+                    @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
+                            <label for="cost" class="col-md-4 control-label">料金</label>
+
+                            <div class="col-md-6">
+                               <textarea id="cost" type="text" class="form-control" name="cost"  rows="5"required></textarea>
+                                @if ($errors->has('cost'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('cost') }}</strong>
+                    </span>
+                    @endif
+                            </div>
+                        </div>
+
+                    <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
+                            <label for="time" class="col-md-4 control-label">使用可能時間</label>
+
+                            <div class="col-md-6">
+                                <input id="time" type="text" class="form-control" name="time" required>
+                                @if ($errors->has('time'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('time') }}</strong>
+                    </span>
+                    @endif
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

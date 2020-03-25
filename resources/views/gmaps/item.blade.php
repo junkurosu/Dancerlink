@@ -15,11 +15,21 @@
 		@foreach($items as $item)
 		<div class="thread-list">
 			<p>
-				<a class="thread_title" href="{{$item->url}}" target="_blank">{{$item->name}}</a>
+
+				<form method="POST" action="{{ route('studioDetails') }}">
+					{{ csrf_field() }}
+					<div><small>{{$item->name}}
+
+						<button type="submit" class="btn btn-primary">
+                                    スタジオページに進む
+                                </button>
+
+					</small></div>
+					<input type="hidden" name="id" value="{{$item->id}}">
+				</form>
+				
 			</p>
-				<div>
-				<small class="gray"></small></div>
-			<small></small>
+				
 		</div>
 		@endforeach
 		{{$items->links()}}

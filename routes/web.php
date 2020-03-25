@@ -68,6 +68,7 @@ Route::post('/map','GmapsController@view');
 Route::get('/pref','GmapsController@pref')->name('studio.pref');
 Route::post('/mapsearch','GmapsController@search')->name('mapsearch');
 Route::get('/studio','GmapsController@studios')->name('studio.archive');
+Route::post('/studio/details','GmapsController@details')->name('studioDetails');
 Route::get('/studioRegister','GmapsController@registerGet')->name('studioRegister');
 Route::post('/studioRegister','GmapsController@create')->name('studioCreate');
 
@@ -78,7 +79,9 @@ admin map
 Route::get('/register','AdminController@registerGet')->name('admin.register');
 Route::post('/register','AdminController@create')->name('register');
 Route::get('/studioEdit','AdminController@studiosEdit')->name('admin.studios');
-Route::post('/studioEdit','AdminController@studiosDelete')->name('studiosDelete');
+Route::post('/studioEdit','AdminController@studioEditing')->name('studioEdit');
+Route::post('/studioEdited','AdminController@studioEdited')->name('studioEdited');
+Route::post('/studioDelete','AdminController@studioDelete')->name('studioDelete');
 Route::get('/permission','AdminController@permissionGet')->name('admin.permission');
 Route::post('/permission','AdminController@permissionPost')->name('permission');
 Route::post('/Notpermission','AdminController@Notpermission')->name('Notpermission');
