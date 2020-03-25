@@ -15,7 +15,7 @@
 		@foreach($studios as $studio)
 		<div class="thread-list">
 			<p>
-				<a class="thread_title" href="{{$studio->url}}">{{$studio->name}}</a>
+				<p><a class="thread_title" href="/studio/{{$studio->id}}" >{{$studio->name}}</a></p> 
 			</p>
 			
 			</div>

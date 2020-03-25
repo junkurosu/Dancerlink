@@ -51,11 +51,11 @@ public function pref(Request $request)
         ]);
     }
 
-    public function details(Request $request){
-        $id =$request->id;
+    public function details($id){
+        $item =Studio::where('id',$id)->first();
 
         return view('gmaps.studioDetails',[
-            'item' => Studio::where('id',$id)->first()
+            'item' => $item
         ]);
     }
 

@@ -2,7 +2,7 @@
 
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('studioDetails') }}
+{{ Breadcrumbs::render('studioDetails',$item) }}
 @stop
 
 @section('content')
@@ -10,7 +10,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading"><h1>{{$item->name}}</h1></div>
 
-	
+
 	<div class="panel-body">
 
 <div class="panel panel-default">
@@ -54,7 +54,7 @@
 
 </div>
 	<div class="panel-body">
-		<h5>※このスタジオの周辺のスタジオを探す</h5>
+		<h5>※このスタジオの周辺のスタジオをGoogleMapを用いて探す</h5>
 		<form class="form-horizontal" method="POST" action="{{ route('mapsearch') }}">
 					{{ csrf_field() }}
 					<input name="lat" type="hidden" value="{{$item->lat}}">

@@ -68,7 +68,7 @@ Route::post('/map','GmapsController@view');
 Route::get('/pref','GmapsController@pref')->name('studio.pref');
 Route::post('/mapsearch','GmapsController@search')->name('mapsearch');
 Route::get('/studio','GmapsController@studios')->name('studio.archive');
-Route::post('/studio/details','GmapsController@details')->name('studioDetails');
+Route::get('/studio/{id}','GmapsController@details')->name('studioDetails');
 Route::get('/studioRegister','GmapsController@registerGet')->name('studioRegister');
 Route::post('/studioRegister','GmapsController@create')->name('studioCreate');
 

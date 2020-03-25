@@ -26,10 +26,10 @@ Breadcrumbs::register('studio.archive', function ($breadcrumbs) {
 	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
 });
 
-Breadcrumbs::register('studioDetails', function ($breadcrumbs) {
+Breadcrumbs::register('studioDetails', function ($breadcrumbs,$item) {
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
-	$breadcrumbs->push('スタジオ詳細',route('studioDetails'));
+	$breadcrumbs->push($item->name, route('studioDetails',$item->id));
 });
 
 Breadcrumbs::register('studio.pref', function ($breadcrumbs) {

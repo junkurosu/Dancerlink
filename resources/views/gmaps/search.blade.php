@@ -28,6 +28,7 @@ var infoWindow = [];
 var markerData = [ // マーカーを立てる場所名・緯度・経度
  @foreach($studios as $studio)
  {
+        id:{{$studio->id}},
         name: '{{$studio->name}}',
      lat: {{$studio->lat}},
         lng: {{$studio->lng}},
@@ -55,7 +56,7 @@ function initMap() {
        });
   
      infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-         content: '<div class="map">' +'<a href= ' + markerData[i]['url'] +' target="_blank">' + markerData[i]['name'] +'</a> '+'</div>' // 吹き出しに表示する内容
+         content: '<div class="map">' +'<a href= /studio/' + markerData[i]['id'] +' >' + markerData[i]['name'] +'</a> '+'</div>' // 吹き出しに表示する内容
        });
   
      markerEvent(i); // マーカーにクリックイベントを追加

@@ -14,22 +14,9 @@
 	<div class="panel-body">
 		@foreach($items as $item)
 		<div class="thread-list">
-			<p>
-
-				<form method="POST" action="{{ route('studioDetails') }}">
-					{{ csrf_field() }}
-					<div><small>{{$item->name}}
-
-						<button type="submit" class="btn btn-primary">
-                                    スタジオページに進む
-                                </button>
-
-					</small></div>
-					<input type="hidden" name="id" value="{{$item->id}}">
-				</form>
-				
-			</p>
-				
+					
+					<p><a class="thread_title" href="/studio/{{$item->id}}" >{{$item->name}}</a></p> 
+					
 		</div>
 		@endforeach
 		{{$items->links()}}
