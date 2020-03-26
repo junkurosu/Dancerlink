@@ -21,7 +21,7 @@ $category_text = implode(',',$array);
 @section('og-image')@yield('thumbnail',url('/eye.jpg'))@endsection
 
 @section('meta')
-<meta name="robots" content="nofollow,noindex">
+
 @stop
 
 
