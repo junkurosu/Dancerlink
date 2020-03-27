@@ -18,7 +18,7 @@
     </url>
     @foreach(\App\Studio::all() as $v)
     <url>
-        <loc>'{{ route('studio.archive') }}/{{$v->id}}'</loc>
+        <loc>{{ route('studio.archive') }}/{{$v->id}}</loc>
         <lastmod>{{ $v->updated_at->format('Y-m-d')}}</lastmod>
     </url>
     @endforeach
