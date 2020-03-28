@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">スタジオ登録画面　Register</div>
+    <div class="panel-heading">スタジオ登録画面</div>
     <h4>{{$message}}</h4>
 
     <div class="panel-body">
@@ -15,7 +15,7 @@
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="col-md-4 control-label">スタジオ名　Name</label>
+                <label for="name" class="col-md-4 control-label">スタジオ名</label>
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                <label for="address" class="col-md-4 control-label">住所　Address</label>
+                <label for="address" class="col-md-4 control-label">住所</label>
 
                 <div class="col-md-6">
                     <input id="address" type="address" class="form-control" name="address" required>
