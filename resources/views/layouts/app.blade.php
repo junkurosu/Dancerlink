@@ -117,7 +117,7 @@ $category_text = implode(',',$array);
                             {{ csrf_field() }}
                             <div id="date-form" class="form-group">
                                 <div class="col-md-12">
-                                    <input id="text" type="text" class="form-control" name="text" required placeholder="キーワードで検索">
+                                    <input id="text" type="text" class="form-control" name="text" required placeholder="スタジオ名や住所のキーワードで検索">
                                 </div>
                             </div>
                             <div class="form-group">
