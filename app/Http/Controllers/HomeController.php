@@ -82,9 +82,9 @@ class HomeController extends Controller
 
         $studios = Studio::where('id','>','0');
         foreach ($keywords as $key => $value) {
-            $studios = $studios->where('name','like',"%{$value}%");
+            $studios = $studios->where('name','like',"%{$value}%")->orwhere('address','like',"%{$value}%");
         }
-        $studios = $studios->paginate(100);
+        $studios = $studios->paginate(30);
 
         return view('search.archive',[
             'search' => $search_text,

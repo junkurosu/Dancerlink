@@ -14,9 +14,12 @@
 	<div class="panel-body">
 		@foreach($studios as $studio)
 		<div class="thread-list">
-			<p>
+	
 				<p><a class="thread_title" href="/studio/{{$studio->id}}" >{{$studio->name}}</a></p> 
-			</p>
+				<div><small class="gray">住所:{{$studio->address}}</small></div>
+				<div><small>料金:{{$studio->cost}}</small></div>
+				<div><small>使用可能時間:{{$studio->time}}</small></div>
+			
 			
 			</div>
 			@endforeach

@@ -16,6 +16,10 @@
 		<div class="thread-list">
 					
 					<p><a class="thread_title" href="/studio/{{$item->id}}" >{{$item->name}}</a></p> 
+				<div><small class="gray">住所:{{$item->address}}</small></div>
+				<div><small>料金:{{$item->cost}}</small></div>
+				<div><small>使用可能時間:{{$item->time}}</small></div>
+			
 					
 		</div>
 		@endforeach

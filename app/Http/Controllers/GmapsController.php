@@ -47,7 +47,7 @@ public function pref(Request $request)
 
     public function studios(){
         return view('gmaps.item',[
-            'items' => Studio::orderBy('updated_at','desc')->paginate(50)
+            'items' => Studio::orderBy('updated_at','desc')->paginate(30)
         ]);
     }
 
