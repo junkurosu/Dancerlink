@@ -19,6 +19,7 @@ class RedirectToNonWww
             $request->headers->set('host', 'dancerlink.site');
 
             return Redirect::to($request->path());
+        }
         return $next($request);
     }
 }
