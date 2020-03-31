@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('child-title')お問い合わせ画面@endsection
+@section('child-description')お問い合わせ画面@endsection
+
 @section('breadcrumb')
 {{ Breadcrumbs::render('contact') }}
 @stop

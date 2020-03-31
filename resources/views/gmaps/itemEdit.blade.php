@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('child-title')スタジオ一覧@endsection
-@section('child-description')スタジオ一覧ページです。@endsection
+@section('child-title')[管理]スタジオ編集一覧@endsection
+@section('child-description')[管理]スタジオ編集一覧ページです。@endsection
 
 
 @section('breadcrumb')

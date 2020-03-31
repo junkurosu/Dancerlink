@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('child-title')[管理]スタジオ登録@endsection
+@section('child-description')[管理]スタジオ登録ページです。@endsection
+
 @section('breadcrumb')
 {{ Breadcrumbs::render('admin.register') }}
 @stop

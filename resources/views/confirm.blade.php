@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('child-title')お問い合わせ確認@endsection
+@section('child-description')お問い合わせ確認ページです。@endsection
+
 @section('breadcrumb')
 {{ Breadcrumbs::render('confirm') }}
 @stop

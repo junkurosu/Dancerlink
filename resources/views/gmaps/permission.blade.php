@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('child-title')スタジオ許可一覧@endsection
-@section('child-description')スタジオ許可一覧ページです。@endsection
+@section('child-title')[管理]スタジオ許可一覧@endsection
+@section('child-description')[管理]スタジオ許可一覧ページです。@endsection
 
 
 @section('breadcrumb')

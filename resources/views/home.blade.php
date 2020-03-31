@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @include('layouts.part')
 
+@section('child-title')HOME画面@endsection
+@section('child-description')HOME画面ページです。@endsection
+
 @section('breadcrumb')
 {{ Breadcrumbs::render('home') }}
 @stop

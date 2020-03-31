@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('child-title')[管理]ログイン画面@endsection
+@section('child-description')[管理]ログイン画面ページです。@endsection
+
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">Login</div>

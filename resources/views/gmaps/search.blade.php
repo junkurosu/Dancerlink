@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('child-title')スタジオ検索@endsection
+@section('child-description')スタジオ検索ページです。@endsection
 
 @section('breadcrumb')
 {{ Breadcrumbs::render('mapsearch') }}

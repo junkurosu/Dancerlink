@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('child-title')都道府県@endsection
-@section('child-description')都道府県@endsection
+@section('child-title')都道府県選択@endsection
+@section('child-description')都道府県選択ページです。@endsection
 
 @section('breadcrumb')
 {{ Breadcrumbs::render('studio.pref') }}
