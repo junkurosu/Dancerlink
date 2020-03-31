@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('child-title')スタジオ詳細@endsection
-@section('child-description')スタジオ詳細ページです。@endsection
+@section('child-title'){{$item->name}}詳細@endsection
+@section('child-description'){{$item->name}}詳細ページです。@endsection
 
 @section('breadcrumb')
 {{ Breadcrumbs::render('studioDetails',$item) }}

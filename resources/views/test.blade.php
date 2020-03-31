@@ -1,3 +1,7 @@
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
  <?php
                
               

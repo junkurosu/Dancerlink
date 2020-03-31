@@ -8,6 +8,10 @@
 {{ Breadcrumbs::render('thread.post',$thread) }}
 @stop
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 @section('content')
 <div class="panel panel-default">
 	@if (session('status') && session('status') == 'alert-success')

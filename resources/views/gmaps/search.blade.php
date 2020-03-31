@@ -7,6 +7,10 @@
 {{ Breadcrumbs::render('mapsearch') }}
 @stop
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 @section('content')
  
 <div class="panel panel-default">

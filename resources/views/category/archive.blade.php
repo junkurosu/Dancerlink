@@ -8,6 +8,10 @@
 {{ Breadcrumbs::render('category.archive') }}
 @stop
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading"><h1>{{config('app.name')}}掲示板カテゴリー一覧</h1></div>

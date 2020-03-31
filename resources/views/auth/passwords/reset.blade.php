@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">

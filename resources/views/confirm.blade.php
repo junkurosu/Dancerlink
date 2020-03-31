@@ -7,6 +7,10 @@
 {{ Breadcrumbs::render('confirm') }}
 @stop
 
+@section('meta')
+<meta name="robots" content="nofollow,noindex">
+@stop
+
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">お問い合せ確認</div>
