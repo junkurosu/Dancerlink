@@ -58,6 +58,8 @@ $category_text = implode(',',$array);
 
   <!-- Styles -->
   <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
+
+  <link rel=”icon” href=“/img/favicon.ico”>
 </head>
 <body>
     <div id="app">
