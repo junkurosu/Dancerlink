@@ -45,7 +45,7 @@ $category_text = implode(',',$array);
     <meta property="og:description" content="@yield('description')">
     <meta name="twitter:description" content="@yield('description')">
     <meta name="description" content="@yield('description')">
-    <link rel="icon" href="{{url('favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href= "{{asset('/img/favicon.ico')}}">
     <link rel="apple-touch-icon" href="{{url('apple-touch-icon.png')}}" sizes="180x180">
     <link rel="icon" href="{{url('favicon.png')}}" sizes="192x192">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -59,7 +59,7 @@ $category_text = implode(',',$array);
   <!-- Styles -->
   <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
 
-  <link rel=”icon” href=“{{asset('/img/favicon.ico')}}”>
+
 </head>
 <body>
     <div id="app">
