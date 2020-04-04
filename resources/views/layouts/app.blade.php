@@ -45,9 +45,10 @@ $category_text = implode(',',$array);
     <meta property="og:description" content="@yield('description')">
     <meta name="twitter:description" content="@yield('description')">
     <meta name="description" content="@yield('description')">
-    <link rel="icon" href= "{{asset('/img/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{url('apple-touch-icon.png')}}" sizes="180x180">
-    <link rel="icon" href="{{url('favicon.png')}}" sizes="192x192">
+    <link rel="shortcut icon" href= "{{asset('/img/favicon.ico')}}" type="image/x-icon">
+
+    <link rel="apple-touch-icon" href="{{asset('/img/apple-touch-icon.png')}}" sizes="180x180">
+    <link rel="icon" href="{{url('/img/android-chrome-512x512.png')}}" sizes="512x512">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="ja" href="{{ url()->current() }}" />
     <link rel="manifest" href="{{url('/manifest.json')}}">
