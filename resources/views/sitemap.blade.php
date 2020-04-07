@@ -4,18 +4,7 @@
         <loc>{{ route('home') }}/</loc>
         <lastmod>2020-03-27</lastmod>
     </url>
-    <url>
-        <loc>{{ route('studio.pref') }}</loc>
-        <lastmod>2020-03-27</lastmod>
-    </url>
-    <url>
-        <loc>{{ route('studio.archive') }}</loc>
-        <lastmod>2020-03-27</lastmod>
-    </url>
-    <url>
-        <loc>{{ route('studioRegister') }}</loc>
-        <lastmod>2020-03-27</lastmod>
-    </url>
+    
     @foreach(\App\Prefecture::all() as $p)
     <url>
         <loc>https://dancerlink.site/{{ $p->code }}</loc>
