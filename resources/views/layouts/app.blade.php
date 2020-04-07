@@ -89,8 +89,8 @@ $category_text = implode(',',$array);
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         
-                        <li><a href="{{route('studio.pref')}}">住所からスタジオ検索</a></li>
-                        <li><a href="{{route('studio.archive')}}">スタジオ一覧</a></li>
+                        <li><a href="{{route('studio.pref')}}">地図からスタジオ検索</a></li>
+                        <li><a href="{{route('studio.pref2')}}">住所からスタジオ検索</a></li>
                         <li><a href="{{route('studioRegister')}}">スタジオ登録</a></li>
                         
                     </ul>

@@ -24,11 +24,10 @@
                     </select>
                 </div>
             </div>
-            <!-- <p>緯度：{{lat}}</p>
-            <p>経度：{{lng}}</p>
-            <p>コード：{{code}}</p> -->
+           <!--  <p>緯度：{{lat}}</p>
+            <p>経度：{{lng}}</p> -->
             <div v-if="lat > 0 && lng > 0">
-                <form class="form-horizontal" method="POST" action="/mapsearch">
+                <form class="form-horizontal" method="POST" action="/pref2">
                     <input type="hidden" name="_token" :value="csrf">
 
                     <input type="hidden" name="code" :value="code">
@@ -48,7 +47,7 @@
         data() {
             return {
                 csrf:'',
-                code:0,
+                code:'',
                 pref:'',
                 city:'',
                 subcity:'',

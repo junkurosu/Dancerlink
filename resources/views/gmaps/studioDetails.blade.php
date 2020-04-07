@@ -4,7 +4,7 @@
 @section('child-description'){{$item->name}}詳細ページです。@endsection
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('studioDetails',$item) }}
+{{ Breadcrumbs::render('studioDetails',$code,$address,$item) }}
 @stop
 
 @section('content')

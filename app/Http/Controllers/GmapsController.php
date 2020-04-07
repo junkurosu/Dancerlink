@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Studio;
 use App\Memo;
+use App\Prefecture;
 
 class GmapsController extends Controller
 {
@@ -35,7 +36,7 @@ public function pref(Request $request)
 
 
     	
-    	$studios = Studio::get();
+    	$studios = Studio::whereNotNull('code')->get();
     	return view('gmaps.search',[
     		'studios'=>$studios,
     		'latlng'=>$latlng,
@@ -43,18 +44,66 @@ public function pref(Request $request)
 
     }
 
-    
+    public function pref2(Request $request)
+    {
+        return view('gmaps.pref2');
+    }
 
-    public function studios(){
+    public function address(Request $request)
+    {
+        
+        $code=$request->code;
+
+
+        return redirect()->route('studios',[$code]);
+
+    
+    }
+
+    public function studios($code){
+
+        $item=Prefecture::where('code',$code)->first();
+
+        $pref=$item->pref_name;
+        $city=$item->city_name;
+        $subcity=$item->city_sub_name;
+
+        $address=$pref.$city.$subcity;
+
+        $text = preg_replace('/( |　|,|、)/', ',', $address);
+        $keywords = explode(',',$text);
+
+        $studios = Studio::where('id','>','0');
+        foreach ($keywords as $key => $value) {
+            $studios = $studios->where('address','like',"%{$value}%");
+        }
+        $studios = $studios->paginate(30);
+
+        
+
         return view('gmaps.item',[
-            'items' => Studio::orderBy('updated_at','desc')->paginate(30)
+            'code'=>$code,
+            'address' => $address,
+            'studios' => $studios
         ]);
     }
 
-    public function details($id){
+    public function details($code,$id){
+        $Prefecture =Prefecture::where('code',$code)->first();
+
+        $pref=$Prefecture->pref_name;
+        $city=$Prefecture->city_name;
+        $subcity=$Prefecture->city_sub_name;
+
+        $address=$pref.$city.$subcity;
+
         $item =Studio::where('id',$id)->first();
 
+        
+        
         return view('gmaps.studioDetails',[
+            'code'=>$code,
+            'address' => $address,
             'item' => $item
         ]);
     }

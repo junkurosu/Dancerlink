@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
       Commands\Ping::class,
       Commands\Gmapcommand::class,
+      Commands\Codecommand::class,
 
   ];
 
@@ -33,6 +34,9 @@ class Kernel extends ConsoleKernel
         ->cron('4 6 * * *');
 
         $schedule->command('GmapRegister')
+        ->cron('4 6 * * *');
+
+        $schedule->command('code')
         ->cron('4 6 * * *');
 
     }

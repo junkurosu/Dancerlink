@@ -21,17 +21,21 @@ Breadcrumbs::register('category.post', function ($breadcrumbs,$category) {
 	$breadcrumbs->push($category->name, route('category.post',$category->id));
 });
 
-Breadcrumbs::register('studio.archive', function ($breadcrumbs) {
+Breadcrumbs::register('studios', function ($breadcrumbs,$address) {
 	$breadcrumbs->parent('home');
-	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
+	$breadcrumbs->push($address,route('studios',$address));
 });
 
-Breadcrumbs::register('studioDetails', function ($breadcrumbs,$item) {
+Breadcrumbs::register('studioDetails', function ($breadcrumbs,$code,$address,$item) {
 	$breadcrumbs->parent('home');
-	$breadcrumbs->push('スタジオ一覧',route('studio.archive'));
-	$breadcrumbs->push($item->name, route('studioDetails',$item->id));
+	$breadcrumbs->push($address,route('studios',$code));
+	$breadcrumbs->push($item->name, route('studioDetails',[$code,$address,$item->id]));
 });
 
+Breadcrumbs::register('studio.pref2', function ($breadcrumbs) {
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('住所検索',route('studio.pref2'));
+});
 Breadcrumbs::register('studio.pref', function ($breadcrumbs) {
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('住所検索',route('studio.pref'));
@@ -109,6 +113,7 @@ Breadcrumbs::register('admin.register', function ($breadcrumbs) {
 	$breadcrumbs->parent('Admin');
 	$breadcrumbs->push('スタジオ登録',route('admin.register'));
 });
+
 Breadcrumbs::register('admin.contact', function ($breadcrumbs) {
 	$breadcrumbs->parent('Admin');
 	$breadcrumbs->push('お問い合わせ',route('admin.contact'));

@@ -22,6 +22,7 @@ class PrefController extends Controller
         $pref = $request->pref;
         $city = $request->city;
         $subcity = $request->subcity;
+        $code = 0;
         $lat = 0;
         $lng = 0;
 
@@ -38,11 +39,13 @@ class PrefController extends Controller
             $subcities = array_unique($subcities);
             if($subs->count() == 1){
                 $p = $subs->firstOrFail();
+                $code= $p->code;
                 $lat = $p->lat;
                 $lng = $p->lng;
             }else{
                 if($subcity && $subs->where('city_sub_name',$subcity)->count() == 1){
                         $p = $subs->where('city_sub_name',$subcity)->firstOrFail();
+                        $code= $p->code;
                         $lat = $p->lat;
                         $lng = $p->lng;
                 }
@@ -53,6 +56,7 @@ class PrefController extends Controller
 
         
         return response()->json([
+        'code'=>$code,
         'prefs' => $prefs,
         'cities' => $cities,
         'subcities' => $subcities,
@@ -60,6 +64,8 @@ class PrefController extends Controller
         'lng' => $lng,
         ]);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

@@ -1961,6 +1961,8 @@ module.exports = __webpack_require__(45);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Preftest_vue__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Preftest_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Preftest_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Preftest2_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Preftest2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Preftest2_vue__);
 window.axios = __webpack_require__(9);
 
 window.axios.defaults.headers.common = {
@@ -1970,10 +1972,17 @@ window.axios.defaults.headers.common = {
 
 
 
+
 var app = new Vue({
 	el: '#preftest',
 	components: {
 		Preftest: __WEBPACK_IMPORTED_MODULE_0__components_Preftest_vue___default.a
+	}
+});
+new Vue({
+	el: '#preftest2',
+	components: {
+		Preftest2: __WEBPACK_IMPORTED_MODULE_1__components_Preftest2_vue___default.a
 	}
 });
 
@@ -2081,11 +2090,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             csrf: '',
+            code: 0,
             pref: '',
             city: '',
             subcity: '',
@@ -2121,6 +2133,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     withCredentials: true
                                 }).then(function (response) {
                                     console.log(response.data);
+                                    _this.code = response.data.code;
                                     _this.prefs = response.data.prefs;
                                     _this.cities = response.data.cities;
                                     _this.subcities = response.data.subcities;
@@ -2295,6 +2308,11 @@ var render = function() {
               _c("input", {
                 attrs: { type: "hidden", name: "_token" },
                 domProps: { value: _vm.csrf }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "code" },
+                domProps: { value: _vm.code }
               }),
               _vm._v(" "),
               _c("input", {
@@ -3121,6 +3139,366 @@ if (hadRuntime) {
   (function() { return this })() || Function("return this")()
 );
 
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(28)
+/* script */
+var __vue_script__ = __webpack_require__(63)
+/* template */
+var __vue_template__ = __webpack_require__(64)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Preftest2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4bc39a14", Component.options)
+  } else {
+    hotAPI.reload("data-v-4bc39a14", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            csrf: '',
+            code: '',
+            pref: '',
+            city: '',
+            subcity: '',
+            lat: 0,
+            lng: 0,
+            prefs: [],
+            cities: [],
+            subcities: []
+        };
+    },
+    created: function created() {
+        this.getData();
+        this.csrf = document.head.querySelector('meta[name="csrf-token"]').content;
+    },
+
+    methods: {
+        getData: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var _this = this;
+
+                var path;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                path = "/api/post/prefs";
+                                _context.next = 3;
+                                return axios.post(path, {
+                                    pref: this.pref,
+                                    city: this.city,
+                                    subcity: this.subcity
+                                }, {
+                                    withCredentials: true
+                                }).then(function (response) {
+                                    console.log(response.data);
+                                    _this.code = response.data.code;
+                                    _this.prefs = response.data.prefs;
+                                    _this.cities = response.data.cities;
+                                    _this.subcities = response.data.subcities;
+                                    _this.lat = response.data.lat;
+                                    _this.lng = response.data.lng;
+                                });
+
+                            case 3:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function getData() {
+                return _ref.apply(this, arguments);
+            }
+
+            return getData;
+        }()
+    }
+});
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "col-md-4" }, [_vm._v("都道府県")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.pref,
+                expression: "pref"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.pref = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getData
+              ]
+            }
+          },
+          _vm._l(_vm.prefs, function(p) {
+            return _c("option", { domProps: { value: p } }, [_vm._v(_vm._s(p))])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "col-md-4" }, [_vm._v("市区町村1")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.city,
+                expression: "city"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.city = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getData
+              ]
+            }
+          },
+          _vm._l(_vm.cities, function(c) {
+            return _c("option", { domProps: { value: c } }, [_vm._v(_vm._s(c))])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "col-md-4" }, [_vm._v("市区町村2")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.subcity,
+                expression: "subcity"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.subcity = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getData
+              ]
+            }
+          },
+          _vm._l(_vm.subcities, function(c) {
+            return _c("option", { domProps: { value: c } }, [_vm._v(_vm._s(c))])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.lat > 0 && _vm.lng > 0
+      ? _c("div", [
+          _c(
+            "form",
+            {
+              staticClass: "form-horizontal",
+              attrs: { method: "POST", action: "/pref2" }
+            },
+            [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "code" },
+                domProps: { value: _vm.code }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "lat" },
+                domProps: { value: _vm.lat }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "lng" },
+                domProps: { value: _vm.lng }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-primary",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("\n                検索\n            ")]
+              )
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4bc39a14", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

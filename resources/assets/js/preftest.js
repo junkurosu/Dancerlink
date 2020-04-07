@@ -6,6 +6,8 @@ window.axios.defaults.headers.common = {
 };
 
 import Preftest from './components/Preftest.vue';
+import Preftest2 from './components/Preftest2.vue';
+
 
 const app = new Vue({
 	el: '#preftest',
@@ -13,6 +15,18 @@ const app = new Vue({
 		Preftest
 	}
 });
+		new Vue({
+	el: '#preftest2',
+	components : {
+		Preftest2
+	}
+});
+
+
+
+
+	
+
 
 // app.component('preftest', require('./components/Preftest.vue').default);
 
