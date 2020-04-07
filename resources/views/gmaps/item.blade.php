@@ -8,9 +8,11 @@
 {{ Breadcrumbs::render('studios',$address) }}
 @stop
 
+@if(count($studios) == 0)
 @section('meta')
 <meta name="robots" content="nofollow,noindex">
 @stop
+@endif
 
 @section('content')
 <div class="panel panel-default">
@@ -23,7 +25,7 @@
 				<div><small class="gray">住所:{{$studio->address}}</small></div>
 				<div><small>料金:{{$studio->cost}}</small></div>
 				<div><small>使用可能時間:{{$studio->time}}</small></div>
-				
+
 			
 			
 			</div>
