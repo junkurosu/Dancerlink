@@ -21,7 +21,7 @@
         <loc>{{ $p->code }}</loc>
         <lastmod>2020-03-27</lastmod>
     </url>
-        @foreach(\App\Studio::all() as $v)
+        @foreach(\App\Studio::where('code',$p->code)->get() as $v)
         <url>
             <loc>{{ $p->code }}/{{$v->id}}</loc>
             <lastmod>{{ $v->updated_at->format('Y-m-d')}}</lastmod>
