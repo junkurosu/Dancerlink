@@ -18,12 +18,12 @@
     </url>
     @foreach(\App\Prefecture::all() as $p)
     <url>
-        <loc>{{ $p->code }}</loc>
+        <loc>https://dancerlink.site/{{ $p->code }}</loc>
         <lastmod>2020-03-27</lastmod>
     </url>
         @foreach(\App\Studio::where('code',$p->code)->get() as $v)
         <url>
-            <loc>{{ $p->code }}/{{$v->id}}</loc>
+            <loc>https://dancerlink.site/{{ $p->code }}/{{$v->id}}</loc>
             <lastmod>{{ $v->updated_at->format('Y-m-d')}}</lastmod>
         </url>
         @endforeach
