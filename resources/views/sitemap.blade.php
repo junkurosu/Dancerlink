@@ -16,11 +16,17 @@
         <loc>{{ route('studioRegister') }}</loc>
         <lastmod>2020-03-27</lastmod>
     </url>
-    @foreach(\App\Studio::all() as $v)
+    @foreach(\App\Prefecture::all() as $p)
     <url>
-        <loc>{{ route('studio.archive') }}/{{$v->id}}</loc>
-        <lastmod>{{ $v->updated_at->format('Y-m-d')}}</lastmod>
+        <loc>{{ $p->code }}</loc>
+        <lastmod>2020-03-27</lastmod>
     </url>
+        @foreach(\App\Studio::all() as $v)
+        <url>
+            <loc>{{ $p->code }}/{{$v->id}}</loc>
+            <lastmod>{{ $v->updated_at->format('Y-m-d')}}</lastmod>
+        </url>
+        @endforeach
     @endforeach
     
 </urlset>
